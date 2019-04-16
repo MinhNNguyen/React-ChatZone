@@ -1,0 +1,6 @@
+export const RECEIVE_USERS = 'RECEIVE_USERS'
+export const SAVE_USER = 'SAVE_USER'
+export const UPDATE_DOB = 'UPDATE_DOB'
+export const UPDATE_NICKNAME = 'UPDATE_NICKNAME'
+export const UPDATE_SEX = 'UPDATE_SEX'
+export const SET_STATUS = 'SET_STATUS'
