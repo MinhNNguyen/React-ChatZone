@@ -1,6 +1,6 @@
 import {
   RECEIVE_MESSAGES,
-  SAVE_MESSAGE
+  ADD_MESSAGE
 } from '../actions/messages'
 
 export default function messages( state={}, action) {
@@ -10,7 +10,7 @@ export default function messages( state={}, action) {
         ...state,
         ...action.messages
       }
-    case SAVE_MESSAGE: 
+    case ADD_MESSAGE: 
       return {
         ...state,
         [action.message.id]: action.message

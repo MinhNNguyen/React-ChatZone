@@ -1,5 +1,8 @@
+import { showLoading, hideLoading} from  'react-redux-loading'
+import { saveMessage } from '../utils/api'
+
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
-export const SAVE_MESSAGE = 'SAVE_MESSAGE'
+export const ADD_MESSAGE = 'ADD_MESSAGE'
 
 export function receiveMessages(messages) {
   return {
@@ -8,9 +11,23 @@ export function receiveMessages(messages) {
   }
 }
 
-function saveMessage(message) {
+function addMessage(message) {
   return {
-    type: SAVE_MESSAGE,
+    type: ADD_MESSAGE,
     message
+  }
+}
+
+export function handleSendMessage({loggedUser, recipientId, text}) {
+  return (dispatch) => {
+    dispatch(showLoading())
+
+    return saveMessage({
+      senderId: loggedUser,
+      receiverId: recipientId,
+      text
+    })
+      .then((message) => dispatch(addMessage(message)))
+      .then(() => dispatch(hideLoading()))
   }
 }

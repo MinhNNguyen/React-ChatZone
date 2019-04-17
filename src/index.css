@@ -1,0 +1,14 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #F2F0EB;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100%;
+}

@@ -19,7 +19,9 @@ class ChatWindow extends Component {
         <MessageList 
           recipientId='sarahedo'
         />
-        <MessageBox />
+        <MessageBox 
+          recipientId='sarahedo'
+        />
       </div>
     )
   }
