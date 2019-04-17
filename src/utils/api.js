@@ -3,7 +3,10 @@ import {
   _getMessages,
   _saveUser,
   _saveMessage,
-  _updateUserInfo
+  _updateUserInfo,
+  _startChatting,
+  _stopChatting,
+  _setStatus
 } from './_DATA.js'
 
 export function getInitialData() {
@@ -26,4 +29,16 @@ export function saveUser(info) {
 
 export function updateUserInfo(info) {
   return _updateUserInfo(info)
+}
+
+export function startChatting(info) {
+  return _startChatting(info)
+}
+
+export function stopChatting(info) {
+  return _stopChatting(info)
+}
+
+export function setLoggedUserStatus(info) {
+  return _setStatus(info)
 }

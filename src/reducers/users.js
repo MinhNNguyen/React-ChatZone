@@ -2,7 +2,8 @@ import {
   RECEIVE_USERS,
   ADD_USER,
   UPDATE_USER,
-  SET_STATUS
+  SET_STATUS,
+  UPDATE_CHAT_STATUS
 } from '../actions/users'
 
 export default function users (state = {}, action) {
@@ -21,6 +22,11 @@ export default function users (state = {}, action) {
       return {
         ...state,
         [action.user.id]: action.user
+      }
+    case UPDATE_CHAT_STATUS:
+      return {
+        ...state,
+        ...action.users
       }
     default:
       return state

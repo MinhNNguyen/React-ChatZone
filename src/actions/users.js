@@ -1,9 +1,15 @@
-import { saveUser, updateUserInfo } from '../utils/api'
+import { 
+  saveUser,
+  updateUserInfo,
+  startChatting,
+  stopChatting 
+} from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER = 'ADD_USER'
 export const SET_STATUS = 'SET_STATUS'
 export const UPDATE_USER = 'UPDATE_USER'
+export const UPDATE_CHAT_STATUS = 'UPDATE_CHAT_STATUS'
 
 export function receiveUsers (users) {
   return {
@@ -38,7 +44,6 @@ function updateUser (user) {
 } 
 
 export function handleUpdateProfile (user, nickname, dob, gender) {
-  console.log('Nickname: ', nickname)
   return (dispatch) => {
     dispatch(showLoading())
     return updateUserInfo({
@@ -57,5 +62,36 @@ export function setStatus(user, status) {
     type: SET_STATUS,
     user,
     status
+  }
+}
+
+function updateChatStatus(users) {
+  return {
+    type: UPDATE_CHAT_STATUS,
+    users
+  }
+}
+
+export function handleStartChatting (loggedUser, otherUser) {
+  return (dispatch) => {
+    dispatch(showLoading())
+    return startChatting({
+      loggedUser,
+      otherUser
+    })
+      .then((users) => ( dispatch(updateChatStatus(users))))
+      .then(() => (dispatch(hideLoading())))
+  }
+}
+
+export function handleStopChatting (loggedUser, otherUser) {
+  return (dispatch) => {
+    dispatch(showLoading())
+    return stopChatting({
+      loggedUser,
+      otherUser
+    })
+      .then((users) => ( dispatch(updateChatStatus(users))))
+      .then(() => (dispatch(hideLoading())))
   }
 }

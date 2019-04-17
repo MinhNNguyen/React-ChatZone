@@ -5,7 +5,8 @@ let users = {
     nickname: 'Sarah Edo',
     dob: '11/12/1988',
     sex: 'female',
-    status: 'offline'
+    status: 'offline',
+    chatWith: ''
   },
   tylermcginnis: {
     id: 'tylermcginnis',
@@ -13,7 +14,8 @@ let users = {
     nickname: 'Tyler McGinnis',
     dob: '4/7/1990',
     sex: 'male',
-    status: 'busy'
+    status: 'busy',
+    chatWith: ''
   },
   johndoe: {
     id: 'johndoe',
@@ -21,7 +23,8 @@ let users = {
     nickname: 'Tyler McGinnis',
     dob: '8/11/1988',
     sex: 'male',
-    status: 'online'
+    status: 'online',
+    chatWith: ''
   }
 }
 
@@ -73,7 +76,8 @@ function formatUser({ username}) {
     nickname: '',
     dob: '',
     sex: '',
-    status: ''
+    status: '',
+    chatWith: ''
   }
 }
 
@@ -92,6 +96,50 @@ export function _saveUser(user) {
       res(formattedUser)
     }, 1000)
     })
+}
+
+export function _startChatting({loggedUser, otherUser}) {
+  return new Promise( (res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [loggedUser] : {
+          ...users[loggedUser],
+          status: 'busy',
+          chatWith: otherUser
+        },
+        [otherUser] : {
+          ...users[otherUser],
+          status: 'busy',
+          chatWith: loggedUser
+        }
+      }
+
+      res(users)
+    }, 500)
+  })
+}
+
+export function _stopChatting({loggedUser, otherUser}) {
+  return new Promise( (res, rej) => {
+    setTimeout(() =>{
+      users = {
+        ...users,
+        [loggedUser]: {
+          ...users[loggedUser],
+          status: 'online',
+          chatWith: ''
+        },
+        [otherUser]: {
+          ...users[otherUser],
+          status: 'online',
+          chatWith: ''
+        }
+      }
+      
+      res(users)
+    }, 500)
+  })
 }
 
 export function _updateUserInfo({user, nickname, dob, gender}) {
@@ -126,6 +174,21 @@ function formatMessage ({senderId, receiverId, text}) {
     receiverId,
     text
   }
+}
+
+export function _setStatus( loggedUser, status) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [loggedUser] : {
+          ...users[loggedUser],
+          status: status
+        }
+      }
+      res()
+    }, 500)
+  })
 }
 
 export function _saveMessage (message) {
