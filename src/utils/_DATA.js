@@ -83,7 +83,7 @@ export function _saveUser(user) {
 
     console.log(formattedUser)
 
-    setTimeOut(() => {
+    setTimeout(() => {
       users = {
         ...users,
         [formattedUser.id]: formattedUser
@@ -96,16 +96,16 @@ export function _saveUser(user) {
 
 export function _getMessages () {
   return new Promise((res, rej) => {
-    setTimeOut(() => res({...messages}), 1000)
+    setTimeout(() => res({...messages}), 1000)
   })
 }
 
 function formatMessage ({senderId, receiverId, text}) {
   return {
     id: generateID(),
-    timestamp: Data.now(),
+    timestamp: Date.now(),
     senderId,
-    receiverID,
+    receiverId,
     text
   }
 }
@@ -115,7 +115,7 @@ export function _saveMessage (message) {
     const loggedUser = message.senderId
     const formattedMessage = formatMessage(message)
 
-    setTimeOut(() => {
+    setTimeout(() => {
       messages = {
         ...messages,
         [formattedMessage.id]: formattedMessage
