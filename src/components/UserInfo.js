@@ -19,14 +19,13 @@ class UserInfo extends Component {
       ...this.state,
       [fieldName]: fieldValue
     }))
-
-    console.log(this.state)
   }
 
   submit = (e) => {
     e.preventDefault()
+    const { dispatch, loggedUser} = this.props
     const { nickname, dob, gender } = this.state
-    this.props.dispatch(handleUpdateProfile(nickname, dob, gender))
+    dispatch(handleUpdateProfile(loggedUser, nickname, dob, gender))
     this.setState(() => ({
       nickname: '',
       dob: '',
@@ -48,7 +47,7 @@ class UserInfo extends Component {
             <div className="card card-signin my-5">
               <div className="card-body">
                 <h5 className="card-title text-center">User Info</h5>
-                <Form className="form-signin" onSubmit={this.signUp}>
+                <Form onSubmit={this.submit}>
                   <Form.Group>
                     <Form.Label>
                       Nickname
@@ -103,8 +102,12 @@ class UserInfo extends Component {
       </div>
     )
   }
+}
 
-
+function mapStateToProps({loggedUser}) {
+  return {
+    loggedUser
+  }
 }
 
 export default connect()(UserInfo)

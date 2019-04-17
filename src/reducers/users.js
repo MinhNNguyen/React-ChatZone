@@ -1,9 +1,7 @@
 import {
   RECEIVE_USERS,
   ADD_USER,
-  UPDATE_DOB,
-  UPDATE_NICKNAME,
-  UPDATE_SEX,
+  UPDATE_USER,
   SET_STATUS
 } from '../actions/users'
 
@@ -19,10 +17,11 @@ export default function users (state = {}, action) {
         ...state,
         [action.user.id]: action.user
       }
-    case UPDATE_DOB:
-      return state
-    case UPDATE_NICKNAME:
-      return state
+    case UPDATE_USER:
+      return {
+        ...state,
+        [action.user.id]: action.user
+      }
     default:
       return state
   }

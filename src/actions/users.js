@@ -1,11 +1,9 @@
-import { saveUser } from '../utils/api'
+import { saveUser, updateUserInfo } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER = 'ADD_USER'
-export const UPDATE_DOB = 'UPDATE_DOB'
-export const UPDATE_NICKNAME = 'UPDATE_NICKNAME'
-export const UPDATE_SEX = 'UPDATE_SEX'
 export const SET_STATUS = 'SET_STATUS'
+export const UPDATE_USER = 'UPDATE_USER'
 
 export function receiveUsers (users) {
   return {
@@ -21,44 +19,37 @@ export function addUser (user) {
   }
 }
 
-export function handleAddUser(username, nickname) {
+export function handleAddUser(username) {
   return (dispatch) => {
     dispatch(showLoading())
     return saveUser({
-      username,
-      nickname
+      username
     })
       .then((user) => (dispatch(addUser(user))))
       .then( () => (dispatch(hideLoading())))
   }
 }
 
-export function saveDOB (user, newDOB) {
+function updateUser (user) {
   return {
-    type: UPDATE_DOB,
-    user,
-    newDOB
+    type: UPDATE_USER,
+    user
   }
 } 
 
-export function saveNickname (user, newNickName) {
-  return {
-    type: UPDATE_NICKNAME,
-    user,
-    newNickName
-  }
-}
-
-export function saveSex (user, sex) {
-  return {
-    type: UPDATE_SEX,
-    user,
-    sex
-  }
-}
-
 export function handleUpdateProfile (user, nickname, dob, gender) {
-  
+  console.log('Nickname: ', nickname)
+  return (dispatch) => {
+    dispatch(showLoading())
+    return updateUserInfo({
+      user,
+      nickname,
+      dob,
+      gender
+    })
+      .then((user) => (dispatch(updateUser(user))))
+      .then( () => (dispatch(hideLoading())))
+  }
 }
 
 export function setStatus(user, status) {

@@ -2,7 +2,8 @@ import {
   _getUsers,
   _getMessages,
   _saveUser,
-  _saveMessage
+  _saveMessage,
+  _updateUserInfo
 } from './_DATA.js'
 
 export function getInitialData() {
@@ -23,4 +24,6 @@ export function saveUser(info) {
   return _saveUser(info)
 }
 
-
+export function updateUserInfo(info) {
+  return _updateUserInfo(info)
+}

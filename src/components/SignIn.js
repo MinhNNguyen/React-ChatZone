@@ -5,48 +5,49 @@ import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login'
 import { Card } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
+import { handleAddUser } from '../actions/users'
 
 class SignIn extends Component {
 
   state = {
-    email: '',
-    name: '',
-    toUserInfo: false,
-    toChatApp: false
+    toUserInfo: false
   }
 
-  responseGoogleFail = (error) => {
+  failResponseGoogle = (error) => {
     console.log(error)
   }
 
-  responseGoogleSuccess = (response) => {
+  successResponseGoogle = (response) => {
+    
     console.log(response)
-    const {dispatch} = this.props
+    
+    const {dispatch, users} = this.props
+    const { email } = response.profileObj
+    
+    if (!Object.keys(users).includes(email)) {
+      dispatch(handleAddUser(email))
+    }
 
-    const google_email = response.profileObj.email
-    const google_name = response.profileObj.name
-    dispatch(handleSignIn(google_email))
+    dispatch(handleSignIn(email))
 
-    this.setState( (prevState) => ({
-      email: google_email,
-      name: google_name,
+    this.setState(() =>({
       toUserInfo: true
     }))
   }
 
   responseFacebook = (response) => {
+    
     console.log(response)
-    const {dispatch} = this.props
+    
+    const {dispatch, users} = this.props
+    const { email } = response
 
-    const fb_email = response.email
-    const fb_name = response.name
-    dispatch(handleSignIn(fb_email))
+    if (!Object.keys(users).includes(email)) {
+      dispatch(handleAddUser(email))
+    }
 
-    this.setState( (prevState) => ({
-      email: fb_email,
-      name: fb_name,
-      toUserInfo: true
-    }))
+    dispatch(handleSignIn(email))
+
   }
 
   render() {
@@ -64,16 +65,17 @@ class SignIn extends Component {
             <GoogleLogin
               clientId="996857602631-te36f7sd9va1vvt5rulnc5hnu90gknja.apps.googleusercontent.com"
               buttonText="Login"
-              onSuccess={this.responseGoogleSuccess}
-              onFailure={this.responseGoogleFail}
+              onSuccess={this.successResponseGoogle}
+              onFailure={this.failResponseGoogle}
               cookiePolicy={'single_host_origin'}
             />
           </div>
           <div>
             <FacebookLogin
               appId="331845904187700"
-              autoLoad={true}
+              autoLoad={false}
               fields="name,email,picture"
+              onClick={this.responseFacebook}
               callback={this.responseFacebook} />
           </div>
         </Card.Body>
@@ -82,4 +84,10 @@ class SignIn extends Component {
   }
 }
 
-export default connect()(SignIn)
+function mapStateToProps({ users }) {
+  return {
+    users
+  }
+}
+
+export default connect(mapStateToProps)(SignIn)

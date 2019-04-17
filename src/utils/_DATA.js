@@ -66,14 +66,14 @@ export function _getUsers () {
   })
 }
 
-function formatUser({ username, nickname}) {
+function formatUser({ username}) {
   return {
     id: username,
     avatarURL: '',
-    nickname,
+    nickname: '',
     dob: '',
     sex: '',
-    status: 'offline'
+    status: ''
   }
 }
 
@@ -92,6 +92,24 @@ export function _saveUser(user) {
       res(formattedUser)
     }, 1000)
     })
+}
+
+export function _updateUserInfo({user, nickname, dob, gender}) {
+  return new Promise( (res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [user] : {
+          ...users[user],
+          nickname: nickname,
+          dob: dob,
+          gender: gender
+        }
+      }
+
+      res(users[user])
+    }, 500)
+  })
 }
 
 export function _getMessages () {
