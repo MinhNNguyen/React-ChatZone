@@ -110,4 +110,4 @@ function mapStateToProps({loggedUser}) {
   }
 }
 
-export default connect()(UserInfo)
+export default connect(mapStateToProps)(UserInfo)

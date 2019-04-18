@@ -13,7 +13,10 @@ export function setLoggedUser (id) {
 export function handleSignIn(id) {
   return (dispatch) => {
     dispatch(showLoading())
-    return setLoggedUserStatus(id, 'online')
+    return setLoggedUserStatus({
+      loggedUser: id,
+      status: 'online'
+    })
       .then(() => (dispatch(setLoggedUser(id))))
       .then(() => ( dispatch(setStatus(id, 'online'))))
       .then(() =>(dispatch(hideLoading())))

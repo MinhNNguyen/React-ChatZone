@@ -7,16 +7,16 @@ import { handleStartChatting } from '../actions/users'
 class User extends Component {
 
   chatWith = (e) => {
-    const { loggedUser, user, dispatch } = this.props
+    const { logged, user, dispatch } = this.props
     e.preventDefault()
-    if ( loggedUser.status !== 'online') {
+    if ( logged.status != 'online') {
       alert('Cannot open chat window because you are not available')
     }
-    else if (user.status !== 'online') {
+    else if (user.status != 'online') {
       alert('Cannot open chat window because the user is not available')
     }
     else {
-      dispatch(handleStartChatting(loggedUser, user))
+      dispatch(handleStartChatting(logged.id, user.id))
     }
   }
 
@@ -37,10 +37,9 @@ class User extends Component {
 }
 
 function mapStateToProps( {users, loggedUser}, {id} ) {
-  const user = users[id]
   return {
-    loggedUser,
-    user
+    logged: users[loggedUser],
+    user: users[id]
   }
 }
 

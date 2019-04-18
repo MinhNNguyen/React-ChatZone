@@ -75,7 +75,7 @@ function formatUser({ username}) {
     avatarURL: '',
     nickname: '',
     dob: '',
-    sex: '',
+    gender: '',
     status: '',
     chatWith: ''
   }
@@ -84,8 +84,6 @@ function formatUser({ username}) {
 export function _saveUser(user) {
   return new Promise( (res, rej) => {
     const formattedUser = formatUser(user)
-
-    console.log(formattedUser)
 
     setTimeout(() => {
       users = {
@@ -176,7 +174,7 @@ function formatMessage ({senderId, receiverId, text}) {
   }
 }
 
-export function _setStatus( loggedUser, status) {
+export function _setStatus( {loggedUser, status}) {
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {

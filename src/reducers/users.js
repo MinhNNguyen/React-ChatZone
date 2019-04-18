@@ -19,6 +19,7 @@ export default function users (state = {}, action) {
         [action.user.id]: action.user
       }
     case UPDATE_USER:
+      console.log('UPDATE USER: ', action.user)
       return {
         ...state,
         [action.user.id]: action.user
@@ -27,6 +28,14 @@ export default function users (state = {}, action) {
       return {
         ...state,
         ...action.users
+      }
+    case SET_STATUS:
+      return {
+        ...state,
+        [action.user]: {
+          ...state[action.user],
+          status: action.status
+        }
       }
     default:
       return state

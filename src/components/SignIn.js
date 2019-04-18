@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleAddUser } from '../actions/users'
 import { handleSignIn} from '../actions/loggedUser'
 import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login'
 import { Card } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
-import { handleAddUser } from '../actions/users'
 
 class SignIn extends Component {
 
@@ -26,9 +26,13 @@ class SignIn extends Component {
     
     if (!Object.keys(users).includes(email)) {
       dispatch(handleAddUser(email))
+        .then(() => (dispatch(handleSignIn(email))))
+    }
+    else {
+      dispatch(handleSignIn(email))
     }
 
-    dispatch(handleSignIn(email))
+    
 
     this.setState(() =>({
       toUserInfo: true
