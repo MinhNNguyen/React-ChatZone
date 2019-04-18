@@ -1,11 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Form, Row, Col } from 'react-bootstrap'
 import { handleSendMessage } from '../actions/messages'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 class MessageBox extends Component {
   state = {
     text: ''
+  }
+
+  
+  addEmoji = (e) => {
+    if (e.unified.length <= 5){
+      let emojiPic = String.fromCodePoint(`0x${e.unified}`)
+      this.setState({
+        text: this.state.text + emojiPic
+      })
+    }else {
+      let sym = e.unified.split('-')
+      let codesArray = []
+      sym.forEach(el => codesArray.push('0x' + el))
+      let emojiPic = String.fromCodePoint(...codesArray)
+      this.setState({
+        text: this.state.text + emojiPic
+      })
+    }
   }
 
   handleChange = (e) => {
@@ -32,23 +51,23 @@ class MessageBox extends Component {
 
   render() {
     return (
-      <div>
-        <Form onSubmit={this.sendText}>
-          <Form.Group>
-            <Form.Control 
-              as="textarea" 
-              rows="3"
-              value={this.state.text}
-              onChange={this.handleChange}>
-            </Form.Control>
-          </Form.Group>
-          <Button
-            variant="btn btn-lg btn-primary btn-block text-uppercase"
-            type="submit"
-            >
-            Submit
-          </Button>
-        </Form>
+      <div class="type_msg">
+        <div class="input_msg_write">
+          <input 
+            type="text" 
+            class="write_msg" 
+            placeholder="Type a message"
+            value={this.state.text}
+            onChange={this.handleChange} />
+          <button 
+            class="msg_send_btn" 
+            type="button"
+            onClick={this.sendText} >
+            <i class="fa fa-paper-plane-o" 
+               aria-hidden="true">
+            </i>
+          </button>
+        </div>
       </div>
     )
   }

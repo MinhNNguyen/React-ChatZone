@@ -12,7 +12,12 @@ class UserList extends Component {
       .filter(user => user !== loggedUser)
       
     return (
-      <div>
+      <div class="inbox_people">
+        <div class="headind_srch">
+          <div class="recent_heading">
+            <h4>User List</h4>
+          </div>
+        </div>
         {
           availableUsers
             .map((user) => (

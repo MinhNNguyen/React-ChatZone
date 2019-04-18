@@ -6,7 +6,7 @@ class MessageList extends Component {
 
   render() {
     return (
-      <div>
+      <div class="msg_list">
         {
           this.props.dialog.map( (id) => (
             <Message key={id} id={id} />

@@ -1,6 +1,6 @@
 let users = {
-  sarahedo: {
-    id: 'sarahedo',
+  'sarahedo@gmail.com': {
+    id: 'sarahedo@gmail.com',
     avatarURL: 'https://tylermcginnis.com/would-you-rather/sarah.jpg',
     nickname: 'Sarah Edo',
     dob: '11/12/1988',
@@ -8,8 +8,8 @@ let users = {
     status: 'offline',
     chatWith: ''
   },
-  tylermcginnis: {
-    id: 'tylermcginnis',
+  'tylermcginnis@gmail.com': {
+    id: 'tylermcginnis@gmail.com',
     avatarURL: 'https://tylermcginnis.com/would-you-rather/tyler.jpg',
     nickname: 'Tyler McGinnis',
     dob: '4/7/1990',
@@ -17,10 +17,37 @@ let users = {
     status: 'busy',
     chatWith: ''
   },
-  johndoe: {
-    id: 'johndoe',
+  'johndoe@gmail.com': {
+    id: 'johndoe@gmail.com',
     avatarURL: 'https://tylermcginnis.com/would-you-rather/dan.jpg',
-    nickname: 'Tyler McGinnis',
+    nickname: 'John Doe',
+    dob: '8/11/1988',
+    sex: 'male',
+    status: 'online',
+    chatWith: ''
+  },
+  'user1@gmail.com': {
+    id: 'user1@gmail.com',
+    avatarURL: 'https://tylermcginnis.com/would-you-rather/dan.jpg',
+    nickname: 'James Steward',
+    dob: '8/11/1988',
+    sex: 'male',
+    status: 'online',
+    chatWith: ''
+  },
+  'user2@gmail.com': {
+    id: 'user2@gmail.com',
+    avatarURL: 'https://tylermcginnis.com/would-you-rather/dan.jpg',
+    nickname: 'Jimmy John',
+    dob: '8/11/1988',
+    sex: 'male',
+    status: 'online',
+    chatWith: ''
+  },
+  'user3@gmail.com': {
+    id: 'user3@gmail.com',
+    avatarURL: 'https://tylermcginnis.com/would-you-rather/dan.jpg',
+    nickname: 'Colin McDonald',
     dob: '8/11/1988',
     sex: 'male',
     status: 'online',
