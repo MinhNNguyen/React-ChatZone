@@ -1,41 +1,31 @@
+## Project Description
+
+This project was an attempt to create a chat application that allows user to authenticate through Google/Facebook Sign In and initiate chat with other users who are available at the time. One user should only be able to chat with one user at the time, when doing so, their statuses were displayed as busy. If the user was not chatting with anyone, his or her status was displayed as online, which allows them to initiate chat with other users who are also online or get invited into a chatroom with user who selected them.
+
+Upon completing, the project should be deployed on Firebase server
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Development Progress
+
+The basic function of the application are ready, however, the Facebook Login, Sign Out Function, and Emoji Board were disable due to lack of time.
+The deployment to firebase was attempted but not successful at the time
+
+## To-do
+
+- Fix bugs
+- Re-enable Facebook Login, cookies, log out function
+- Deploy to Firebase, test and valiadate with multiple users online at a time
+- Deploy an ablility to detect emoji using regex within text
+- Rework on user interface and design
 
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
